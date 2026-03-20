@@ -1,23 +1,65 @@
 import random
 
-words = [
-    "python",
-    "programa",
-    "variable",
-    "funcion",
-    "bucle",
-    "cadena",
-    "entero",
-    "lista",
+foods = [
+    "pizza",
+    "hamburguesa",
+    "asado",
+    "milanesa",
+    "pancho",
+    "fideos",
 ]
 
-word = random.choice(words)
+sports = [
+    "futbol",
+    "tenis",
+    "voley",
+    "rugby",
+    "basket",
+    "boxeo",
+]
+
+countries = [
+    "japon",
+    "mexico",
+    "australia",
+    "argentina",
+    "alemania",
+    "italia"
+]
+
+cities = [
+    "londres",
+    "Sidney",
+    "Zurich",
+    "Lima",
+    "Santiago",
+    "Brasilia"
+]
+
+categories = {"comida": foods,
+              "deportes": sports,
+              "paises": countries,
+              "ciudades" : cities
+             }
+
+
 guessed = []
 attempts = 6
-puntaje = 0
+points = 0
 
 print("¡Bienvenido al Ahorcado!")
 print()
+
+print("")
+
+for elem in categories:
+    print(elem," ")
+while True:
+    C = input("ingrese que categoria desea jugar: ")
+    if C in categories:
+        word = random.choice(categories[C])
+        break
+    print("categoria invalida")
 
 while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
@@ -30,8 +72,8 @@ while attempts > 0:
     print(progress)
     # Verificar si el jugador ya adivinó la palabra completa
     if "_" not in progress:
-        puntaje += 6
-        print("puntaje: ",puntaje)
+        points += 6
+        print("puntaje: ",points)
         print("¡Ganaste!")
         break
 
@@ -51,11 +93,11 @@ while attempts > 0:
     else:
         guessed.append(letter)
         attempts -= 1
-        puntaje -= 1
+        points -= 1
         print("Esa letra no está en la palabra.")
 
     print()
 else:
-    puntaje = 0
-    print("puntaje: ",puntaje)
+    points = 0
+    print("puntaje: ",points)
     print(f"¡Perdiste! La palabra era: {word}")
